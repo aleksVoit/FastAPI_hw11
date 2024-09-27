@@ -2,6 +2,13 @@ from libgravatar import Gravatar
 from sqlalchemy.orm import Session
 from src.database.models import User
 from src.schemas import UserModel
+from src.conf.config import settings
+
+import redis
+
+import pickle
+
+r = redis.Redis(host=settings.redis_host, port=settings.redis_port, db=0)
 
 
 async def get_user_by_email(email: str, db: Session) -> User:
@@ -9,7 +16,6 @@ async def get_user_by_email(email: str, db: Session) -> User:
 
 
 async def create_user(body: UserModel, db: Session) -> User:
-    print('in repository create user')
     avatar = None
     try:
         g = Gravatar(body.email)
@@ -17,7 +23,6 @@ async def create_user(body: UserModel, db: Session) -> User:
     except Exception as e:
         print(e)
     new_user = User(**body.dict(), avatar=avatar)
-    print('user created in repository')
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
