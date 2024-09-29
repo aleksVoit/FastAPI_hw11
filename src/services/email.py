@@ -24,6 +24,18 @@ conf = ConnectionConfig(
 
 
 async def send_email(email: EmailStr, username: str, host: str):
+    """
+    Send confirmation email to user.
+
+    :param email: the receiver's email.
+    :type email: EmailStr
+    :param username: username.
+    :type username: str
+    :param host: server host.
+    :type host: str
+    :return: None.
+    :rtype: None
+    """
     try:
         token_verification = auth_service.create_email_token({"sub": email})
         message = MessageSchema(
@@ -32,10 +44,8 @@ async def send_email(email: EmailStr, username: str, host: str):
             template_body={"host": host, "username": username, "token": token_verification},
             subtype=MessageType.html
         )
-        print('email - before send FastMail')
         fm = FastMail(conf)
         await fm.send_message(message, template_name="email_template.html")
-        print('The email was sent')
     except ConnectionErrors as err:
         print(err)
 

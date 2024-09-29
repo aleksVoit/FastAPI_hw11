@@ -15,6 +15,13 @@ from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    """
+    Retrieves FastAPI app
+
+    :param app: The number of notes to skip.
+    :type app: FastAPI
+    """
+
     print('start app')
     r = await redis.Redis(host=settings.redis_host,
                           port=settings.redis_port,
@@ -48,6 +55,12 @@ app.add_middleware(
 
 @app.get('/', dependencies=[Depends(RateLimiter(times=2, seconds=5))])
 def read_root():
+    """
+    Retrieves nothing
+
+    :return: dictionary with message.
+    :rtype: Dict
+    """
     return {'message': 'Hello World!'}
 
 
