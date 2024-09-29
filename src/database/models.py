@@ -1,8 +1,7 @@
 from sqlalchemy import Column, Integer, String, ARRAY, UniqueConstraint, Boolean, func, Table
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import Date, DateTime
-from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
