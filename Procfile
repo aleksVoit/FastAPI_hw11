@@ -1,1 +1,1 @@
-web: uvicorn main:app --port ${PORT:-8000} --host 0.0.0.0
+web: pip install -r requirements.txt && alembic upgrade && uvicorn main:app --port ${PORT:-8000} --host 0.0.0.0
