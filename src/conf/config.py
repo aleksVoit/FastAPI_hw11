@@ -7,9 +7,7 @@ class Settings(BaseSettings):
     pg_host: str
     pg_port: int
     pg_db: str
-    pg_test_db: str
     sqlalchemy_db_url: str
-    sqlalchemy_test_db_url: str
     secret_key: str
     algorithm: str
     mail_username: str
