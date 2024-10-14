@@ -30,7 +30,8 @@ async def read_users_me(current_user: User = Depends(auth_service.get_current_us
 
 
 @router.patch('/avatar', response_model=UserDb)
-async def update_avatar_user(file: UploadFile = File(), current_user: User = Depends(auth_service.get_current_user),
+async def update_avatar_user(file: UploadFile = File(),
+                             current_user: User = Depends(auth_service.get_current_user),
                              db: Session = Depends(get_db)):
     """
     Changes avatar of user.
