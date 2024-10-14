@@ -20,7 +20,6 @@ class Auth:
     _oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
     _r = redis.Redis(host=settings.redis_host, port=settings.redis_port, db=0)
 
-
     def verify_password(self, plain_password, hash_password):
         """
         Compares entered password and hash of the password from database.
