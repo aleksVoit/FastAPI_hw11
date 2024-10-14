@@ -23,6 +23,7 @@ passlib = "^1.7.4"
 fastapi-mail = "^1.4.1"
 python-multipart = "^0.0.12"
 bcrypt = "^4.2.0"
+jose = "^1.0.0"
 
 
 [build-system]
